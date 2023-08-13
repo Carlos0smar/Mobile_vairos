@@ -24,19 +24,12 @@ public class Operaciones {
     public void setB(int b) {
         this.b = b;
     }
+
     public int sumar(){
         return this.a + this.b;
     }
 
-    public int restar(){
-        return this.a - this.b;
-    }
 
-    public int multiplicar(){
-        return this.a * this.b;
-    }
 
-    public float dividir(){
-        return this.a/this.b;
-    }
+
 }
