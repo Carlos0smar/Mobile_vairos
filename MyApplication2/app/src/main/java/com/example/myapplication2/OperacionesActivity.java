@@ -21,14 +21,15 @@ public class OperacionesActivity extends AppCompatActivity {
         editTextA = findViewById(R.id.editTextA);
         editTextB = findViewById(R.id.editTextB);
         buttonSuma = findViewById(R.id.buttonSuma);
-        TextViewResultado = findViewById(R.id.textViewResultado); (){
+        TextViewResultado = findViewById(R.id.textViewResultado);
+        buttonSuma.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                int x = Integer.parseInt(editTextA);
+                int x = Integer.parseInt(editTextA.getText().toString());
+                int y = Integer.parseInt(editTextB.getText().toString());
+                Operaciones operaciones = new Operaciones(x,y);
+                TextViewResultado.setText(String.valueOf(operaciones.sumar()));
             }
-
-        buttonSuma.setOnClickListener(new View.OnClickListener
-
         });
     }
 }
