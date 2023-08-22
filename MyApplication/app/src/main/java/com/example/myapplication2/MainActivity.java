@@ -9,7 +9,8 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button ButtonOperaciones, ButtonSalir, ButtonSegundoGrado, ButtonImaginarios, ButtonCalculadora;
+    Button ButtonOperaciones, ButtonSalir, ButtonSegundoGrado, ButtonImaginarios, ButtonCalculadora,
+            ButtonGraficos2D;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         ButtonSegundoGrado = findViewById(R.id.buttonSegundoGrado);
         ButtonCalculadora = findViewById(R.id.buttonCalculadora);
         ButtonImaginarios = findViewById(R.id.buttonImaginario);
+        ButtonGraficos2D = findViewById(R.id.buttonGraficos);
 
         ButtonSalir = findViewById(R.id.ButtonSalir);
 
@@ -27,6 +29,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, OperacionesActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        ButtonGraficos2D.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(new Graficos2D(MainActivity.this));
             }
         });
 
