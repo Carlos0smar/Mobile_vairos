@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button ButtonOperaciones, ButtonSalir, ButtonSegundoGrado, ButtonImaginarios;
+    Button ButtonOperaciones, ButtonSalir, ButtonSegundoGrado, ButtonImaginarios, ButtonCalculadora;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,8 +17,8 @@ public class MainActivity extends AppCompatActivity {
 
         ButtonOperaciones = findViewById(R.id.ButtonOperaciones);
         ButtonSegundoGrado = findViewById(R.id.buttonSegundoGrado);
+        ButtonCalculadora = findViewById(R.id.buttonCalculadora);
         ButtonImaginarios = findViewById(R.id.buttonImaginario);
-
 
         ButtonSalir = findViewById(R.id.ButtonSalir);
 
@@ -42,6 +42,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ComplejosActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ButtonCalculadora.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CalculadoraActivity.class);
                 startActivity(intent);
             }
         });

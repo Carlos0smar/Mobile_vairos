@@ -19,7 +19,7 @@
         android:id="@+id/ButtonOperaciones"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Calculadora"
+        android:text="Operaciones"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -43,7 +43,7 @@
         android:id="@+id/buttonSegundoGrado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Operaciones"
+        android:text="SegundoGrado"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
@@ -62,5 +62,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.417" />
+
+    <Button
+        android:id="@+id/buttonCalculadora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calculadora"
+        tools:layout_editor_absoluteX="136dp"
+        tools:layout_editor_absoluteY="226dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

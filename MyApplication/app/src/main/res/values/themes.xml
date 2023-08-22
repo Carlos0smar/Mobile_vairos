@@ -6,4 +6,22 @@
     </style>
 
     <style name="Theme.MyApplication2" parent="Base.Theme.MyApplication2" />
+
+    <style name="BUTTON_NUM">
+        <item name="android:backgroundTint">@color/gray_white</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="BUTTON_SIGN">
+        <item name="android:backgroundTint">@color/gray_white</item>
+        <item name="android:textColor">@color/dark_green</item>
+        <item name="android:textSize">40sp</item>
+    </style>
+
+    <style name="TEXT_EDITOR">
+        <item name="android:textSize">20sp</item>
+        <item name="android:background">@color/gray_white</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>
