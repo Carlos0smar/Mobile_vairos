@@ -56,4 +56,6 @@ public class Graficos2D extends View {
     double fx(float x){
         return x*Math.atan(x);
     }
+
+
 }
