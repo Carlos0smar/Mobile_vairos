@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     DataBase dataBase;
     SQLiteDatabase db;
     Button ButtonOperaciones, ButtonSalir, ButtonSegundoGrado, ButtonImaginarios, ButtonCalculadora,
-            ButtonGraficos2D, ButtonGraficos2DTarea, ButtonEscalado, ButtonEnviar, ButtonBD;
+            ButtonGraficos2D, ButtonGraficos2DTarea, ButtonEscalado, ButtonEnviar, ButtonBD, ButtonBDTarea;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         ButtonGraficos2DTarea = findViewById(R.id.buttonGraficosTarea);
         ButtonEnviar = findViewById(R.id.buttonEnviar);
         ButtonBD = findViewById(R.id.buttonBD);
+        ButtonBDTarea = findViewById(R.id.buttonBDTarea);
+
 
         ButtonEscalado = findViewById(R.id.buttonEscalado);
 
@@ -78,6 +80,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        ButtonBDTarea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, FormActivity.class);
+                startActivity(intent);
+            }
+        });
 
         ButtonEscalado.setOnClickListener(new View.OnClickListener() {
             @Override

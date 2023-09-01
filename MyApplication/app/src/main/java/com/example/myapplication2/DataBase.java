@@ -15,11 +15,11 @@ public class DataBase extends SQLiteOpenHelper {
 
     String SQL_Drop = "DROP TABLE IF EXISTS personas;";
 
-    Intent intent = getIntent();
-    String ci = intent.getStringExtra("CI");
-    String nombre = intent.getStringExtra("NOMBRE");
-    String paterno = intent.getStringExtra("PATERNO");
-    String materno = intent.getStringExtra("MATERNO");
+//    Intent intent = getIntent();
+//    String ci = intent.getStringExtra("CI");
+//    String nombre = intent.getStringExtra("NOMBRE");
+//    String paterno = intent.getStringExtra("PATERNO");
+//    String materno = intent.getStringExtra("MATERNO");
 
 
     public DataBase(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {

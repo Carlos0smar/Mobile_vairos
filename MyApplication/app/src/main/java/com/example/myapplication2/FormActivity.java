@@ -13,15 +13,14 @@ import android.widget.Toast;
 
 public class FormActivity extends AppCompatActivity {
 
+    DataBase dataBase;
+    SQLiteDatabase db;
+    Button ButtonGuardar, ButtonMostrar;
+    EditText editnombre, editci, editpaterno, editmaterno;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
-
-        DataBase dataBase;
-        SQLiteDatabase db;
-        Button ButtonGuardar, ButtonMostrar, ButtonBD;
-        EditText editnombre, editci, editpaterno, editmaterno;
 
         ButtonGuardar = findViewById(R.id.buttonGUARDAR);
         ButtonMostrar = findViewById(R.id.buttonMOSTRAR);
@@ -30,43 +29,22 @@ public class FormActivity extends AppCompatActivity {
         editnombre = findViewById(R.id.editNOMBRE);
         editpaterno = findViewById(R.id.editPATERNO);
 
+        dataBase = new DataBase(FormActivity.this, "DB_Persona", null, 1);
 
-
-        ButtonBD = findViewById(R.id.buttonBD);
-
-        dataBase = new DataBase(FormActivity.this, "BDEjepersonas", null, 1);
-
-
-//        ButtonGuardar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(FormActivity.this, DataBase.class);
-//                intent.putExtra("CI", editci.getText());
-//                intent.putExtra("NOMBRE", editnombre.getText() );
-//                intent.putExtra("PATERNO", editpaterno.getText());
-//                intent.putExtra("MATERNO", editmaterno.getText());
-//
-//                startActivity(intent);
-//
-//            }
-//        });
         ButtonGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String ci = editci.getText().toString();
+                String paterno = editpaterno.getText().toString();
+                String materno = editmaterno.getText().toString();
+                String nombre = editnombre.getText().toString();
+                editci.setText("");
+                editmaterno.setText("");
+                editpaterno.setText("");
+                editnombre.setText("");
 
                 db = dataBase.getWritableDatabase();
-                db.execSQL("INSERT INTO personas(ci,paterno,materno,nombre) VALUES('editci.getText()','editpaterno.getText()', 'editmaterno.getText()', 'editnombre.getText()');");
-
-                String SQL = "select * from personas;";
-
-                db = dataBase.getReadableDatabase();
-                Cursor cursor = db.rawQuery(SQL, null);
-                if(cursor.moveToFirst()){
-                    do{
-                        String paterno = cursor.getString(3);
-                        Toast.makeText(FormActivity.this, paterno, Toast.LENGTH_SHORT).show();
-                    }while(cursor.moveToNext());
-                }
+                db.execSQL("INSERT INTO personas(ci,paterno,materno,nombre) VALUES('"+ ci + "', '" + paterno + "', '"+ materno + "', '" + nombre + "');");
             }
         });
 
@@ -75,18 +53,20 @@ public class FormActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String SQL = "select * from personas;";
-
                 db = dataBase.getReadableDatabase();
                 Cursor cursor = db.rawQuery(SQL, null);
                 if(cursor.moveToFirst()){
                     do{
-                        String paterno = cursor.getString(3);
-                        Toast.makeText(FormActivity.this, paterno, Toast.LENGTH_SHORT).show();
+                        String paterno = cursor.getString(2);
+                        String materno = cursor.getString(3);
+                        String nombre = cursor.getString(4);
+                        String ci = cursor.getString(1);
+
+                        String Linea = ci + " " + nombre +  " " + paterno +  " " + materno ;
+                        Toast.makeText(FormActivity.this, Linea, Toast.LENGTH_SHORT).show();
                     }while(cursor.moveToNext());
                 }
             }
         });
-
-
     }
 }
