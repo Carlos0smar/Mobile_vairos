@@ -10,11 +10,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class MainActivity extends AppCompatActivity {
     DataBase dataBase;
     SQLiteDatabase db;
+
+    List<WSAlbums> ListData = new ArrayList<>();
     Button ButtonOperaciones, ButtonSalir, ButtonSegundoGrado, ButtonImaginarios, ButtonCalculadora,
-            ButtonGraficos2D, ButtonGraficos2DTarea, ButtonEscalado, ButtonEnviar, ButtonBD, ButtonBDTarea;
+            ButtonGraficos2D, ButtonGraficos2DTarea, ButtonEscalado, ButtonEnviar, ButtonBD, ButtonBDTarea,
+            ButtonWebService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         ButtonEnviar = findViewById(R.id.buttonEnviar);
         ButtonBD = findViewById(R.id.buttonBD);
         ButtonBDTarea = findViewById(R.id.buttonBDTarea);
+        ButtonWebService = findViewById(R.id.buttonWebService);
+
 
 
         ButtonEscalado = findViewById(R.id.buttonEscalado);
@@ -79,6 +93,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        ButtonWebService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getData();
+            }
+        });
+
 
         ButtonBDTarea.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,4 +161,34 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void getData(){
+
+
+        String URL_WS = "https://jsonplaceholder.typicode.com/";
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(URL_WS)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        WebServiceAPI webServiceApi = retrofit.create(WebServiceAPI.class);
+        final Call<List<WSAlbums>> call = webServiceApi.getAlbums();
+        call.enqueue(new Callback<List<WSAlbums>>() {
+            @Override
+            public void onResponse(Call<List<WSAlbums>> call, Response<List<WSAlbums>> response) {
+                if(response.isSuccessful()){
+                    ListData = response.body();
+                    Toast.makeText(MainActivity.this, ListData.get(0).getTitle(), Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(MainActivity.this, "REVISE SU SERVICIO DE INTERNET", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<WSAlbums>> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "REVISE EL SERVICIO WEB DE INTERNET", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
 }
