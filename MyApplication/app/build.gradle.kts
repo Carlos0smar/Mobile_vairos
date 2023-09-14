@@ -34,7 +34,7 @@ android {
 //        exclude ' META-INF/NOTICE'
 //        exclude ' META-INF/notice.txt'
 //    }
-//    packagingOptions.resources.excludes.add("/META-INF/{ASL2.0,LICENSE,license.txt,NOTICE,notice.txt}")
+    packagingOptions.resources.excludes.add("/META-INF/{ASL2.0,LICENSE,license.txt,NOTICE,notice.txt}")
 //    packagingOptions.resources.excludes.add('/META-INF/{AL2.0,LGPL2.1}')
 
 
