@@ -35,7 +35,6 @@ android {
 //        exclude ' META-INF/notice.txt'
 //    }
     packagingOptions.resources.excludes.add("/META-INF/{ASL2.0,LICENSE,license.txt,NOTICE,notice.txt}")
-    
 
 
 

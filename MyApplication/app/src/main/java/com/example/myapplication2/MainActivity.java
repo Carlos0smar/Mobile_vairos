@@ -24,9 +24,11 @@ public class MainActivity extends AppCompatActivity {
     SQLiteDatabase db;
 
     List<WSAlbums> ListData = new ArrayList<>();
+    List<WSPersons> listDataPersons = new ArrayList<>();
+    List<WSCompras> listDataCompras = new ArrayList<>();
     Button ButtonOperaciones, ButtonSalir, ButtonSegundoGrado, ButtonImaginarios, ButtonCalculadora,
             ButtonGraficos2D, ButtonGraficos2DTarea, ButtonEscalado, ButtonEnviar, ButtonBD, ButtonBDTarea,
-            ButtonWebService;
+            ButtonWebService, ButtonWebServicePersons, ButtonWebServiceCompras;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
         ButtonBD = findViewById(R.id.buttonBD);
         ButtonBDTarea = findViewById(R.id.buttonBDTarea);
         ButtonWebService = findViewById(R.id.buttonWebService);
-
+        ButtonWebServicePersons = findViewById(R.id.buttonWebServicePersons);
+        ButtonWebServiceCompras = findViewById(R.id.buttonWebServiceCompras);
 
 
         ButtonEscalado = findViewById(R.id.buttonEscalado);
@@ -91,6 +94,20 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, OperacionesActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        ButtonWebServicePersons.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDataPersons();
+            }
+        });
+
+        ButtonWebServiceCompras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDataCompras();
             }
         });
 
@@ -158,6 +175,57 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+    }
+
+    public void getDataCompras(){
+        String URL_WS = "http://192.168.78.117/sis104/";
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(URL_WS)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        WebServiceAPI webServiceApi = retrofit.create(WebServiceAPI.class);
+        final Call<List<WSCompras>> call = webServiceApi.getCompras();
+        call.enqueue(new Callback<List<WSCompras>>() {
+            @Override
+            public void onResponse(Call<List<WSCompras>> call, Response<List<WSCompras>> response) {
+                if(response.isSuccessful()){
+                    listDataCompras = response.body();
+                    Toast.makeText(MainActivity.this, listDataCompras.get(0).getCantidad(), Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(MainActivity.this, "REVISE SU SERVICIO DE INTERNET", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<WSCompras>> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    public void getDataPersons(){
+        String URL_WS = "http://192.168.78.117/sis104/";
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(URL_WS)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        WebServiceAPI webServiceApi = retrofit.create(WebServiceAPI.class);
+        final Call<List<WSPersons>> call = webServiceApi.getPersons();
+        call.enqueue(new Callback<List<WSPersons>>() {
+            @Override
+            public void onResponse(Call<List<WSPersons>> call, Response<List<WSPersons>> response) {
+                if(response.isSuccessful()){
+                    listDataPersons = response.body();
+                    Toast.makeText(MainActivity.this, listDataPersons.get(0).getPaterno(), Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(MainActivity.this, "REVISE SU SERVICIO DE INTERNET", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<WSPersons>> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

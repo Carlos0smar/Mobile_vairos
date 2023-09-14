@@ -9,4 +9,8 @@ public interface WebServiceAPI {
     @GET("albums")
     Call<List<WSAlbums>>getAlbums();
 
+    @GET("primer.php")
+    Call<List<WSPersons>>getPersons();
+    @GET("segundo.php")
+    Call<List<WSCompras>>getCompras();
 }
