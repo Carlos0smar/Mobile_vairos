@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,10 +27,12 @@ public class MainActivity extends AppCompatActivity {
 
     List<WSAlbums> ListData = new ArrayList<>();
     List<WSPersons> listDataPersons = new ArrayList<>();
+    List<WSPersonsPost> listPersonsPost = new ArrayList<>();
     List<WSCompras> listDataCompras = new ArrayList<>();
     Button ButtonOperaciones, ButtonSalir, ButtonSegundoGrado, ButtonImaginarios, ButtonCalculadora,
             ButtonGraficos2D, ButtonGraficos2DTarea, ButtonEscalado, ButtonEnviar, ButtonBD, ButtonBDTarea,
-            ButtonWebService, ButtonWebServicePersons, ButtonWebServiceCompras;
+            ButtonWebService, ButtonWebServicePersons, ButtonWebServiceCompras,
+            ButtonWebServicePersonsPost;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +48,9 @@ public class MainActivity extends AppCompatActivity {
         ButtonBD = findViewById(R.id.buttonBD);
         ButtonBDTarea = findViewById(R.id.buttonBDTarea);
         ButtonWebService = findViewById(R.id.buttonWebService);
-        ButtonWebServicePersons = findViewById(R.id.buttonWebServicePersons);
         ButtonWebServiceCompras = findViewById(R.id.buttonWebServiceCompras);
+        ButtonWebServicePersons = findViewById(R.id.buttonWebServicePersons);
+        ButtonWebServicePersonsPost = findViewById(R.id.buttonWebServicePersonsInsert);
 
 
         ButtonEscalado = findViewById(R.id.buttonEscalado);
@@ -97,12 +102,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        ButtonWebServicePersonsPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                postPersona();
+            }
+        });
+
         ButtonWebServicePersons.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getDataPersons();
             }
         });
+
 
         ButtonWebServiceCompras.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,8 +192,42 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void postPersona(){
+        String URL_WS = "http://192.168.6.115/mobile/";
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(URL_WS)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        WebServiceAPI webServiceApi = retrofit.create(WebServiceAPI.class);
+        Call<WSPersona> personaCall = webServiceApi.postPersona(new WSPersona("a","b","c","123"));
+        personaCall.enqueue(new Callback<WSPersona>() {
+            @Override
+            public void onResponse(Call<WSPersona> call, Response<WSPersona> response) {
+                if (!response.isSuccessful()) {
+                    String error = "Ha ocurrido un error. Contacte al administrador";
+                    if (response.errorBody()
+                            .contentType()
+                            .subtype()
+                            .equals("json")) {
+                    } else {
+                        try {
+                            Log.d("LoginActivity", response.errorBody().string());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    return;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<WSPersona> call, Throwable t) {
+
+            }
+        });
+    }
     public void getDataCompras(){
-        String URL_WS = "http://192.168.78.117/sis104/";
+        String URL_WS = "http://192.168.1.14/mobile/";
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL_WS)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -205,7 +252,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void getDataPersons(){
-        String URL_WS = "http://192.168.78.117/sis104/";
+        String URL_WS = "http://192.168.1.14/mobile/";
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL_WS)
                 .addConverterFactory(GsonConverterFactory.create())
