@@ -193,7 +193,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void postPersona(){
-        String URL_WS = "http://192.168.6.115/mobile/";
+//        String URL_WS = "http://192.168.1.8/mobile/";
+        String URL_WS = "http://192.168.1.8/mobile/";
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL_WS)
                 .addConverterFactory(GsonConverterFactory.create())
