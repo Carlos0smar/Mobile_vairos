@@ -32,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
     Button ButtonOperaciones, ButtonSalir, ButtonSegundoGrado, ButtonImaginarios, ButtonCalculadora,
             ButtonGraficos2D, ButtonGraficos2DTarea, ButtonEscalado, ButtonEnviar, ButtonBD, ButtonBDTarea,
             ButtonWebService, ButtonWebServicePersons, ButtonWebServiceCompras,
-            ButtonWebServicePersonsPost;
+            ButtonWebServicePersonsPost, PrimerParcial;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,9 +52,9 @@ public class MainActivity extends AppCompatActivity {
         ButtonWebServiceCompras = findViewById(R.id.buttonWebServiceCompras);
         ButtonWebServicePersons = findViewById(R.id.buttonWebServicePersons);
         ButtonWebServicePersonsPost = findViewById(R.id.buttonWebServicePersonsInsert);
+        ButtonWebServicePersonsPost = findViewById(R.id.buttonWebServicePersonsInsert);
 
-
-        ButtonEscalado = findViewById(R.id.buttonEscalado);
+        PrimerParcial = findViewById(R.id.PrimerParcial);
 
 
         ButtonSalir = findViewById(R.id.ButtonSalir);
@@ -102,6 +103,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        PrimerParcial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, _1er_parcial.class);
+                startActivity(intent);
+            }
+        });
         ButtonWebServicePersonsPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,12 +148,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ButtonEscalado.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setContentView(new Escalado(MainActivity.this));
-            }
-        });
+//        ButtonEscalado.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                setContentView(new Escalado(MainActivity.this));
+//            }
+//        });
 
         ButtonGraficos2D.setOnClickListener(new View.OnClickListener() {
             @Override
