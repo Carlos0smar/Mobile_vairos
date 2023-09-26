@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,12 +28,11 @@ public class MainActivity extends AppCompatActivity {
 
     List<WSAlbums> ListData = new ArrayList<>();
     List<WSPersons> listDataPersons = new ArrayList<>();
-    List<WSPersonsPost> listPersonsPost = new ArrayList<>();
     List<WSCompras> listDataCompras = new ArrayList<>();
     Button ButtonOperaciones, ButtonSalir, ButtonSegundoGrado, ButtonImaginarios, ButtonCalculadora,
             ButtonGraficos2D, ButtonGraficos2DTarea, ButtonEscalado, ButtonEnviar, ButtonBD, ButtonBDTarea,
             ButtonWebService, ButtonWebServicePersons, ButtonWebServiceCompras,
-            ButtonWebServicePersonsPost, PrimerParcial;
+            ButtonWebServicePersonsPost, PrimerParcial, FormWS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +52,9 @@ public class MainActivity extends AppCompatActivity {
         ButtonWebServiceCompras = findViewById(R.id.buttonWebServiceCompras);
         ButtonWebServicePersons = findViewById(R.id.buttonWebServicePersons);
         ButtonWebServicePersonsPost = findViewById(R.id.buttonWebServicePersonsInsert);
-        ButtonWebServicePersonsPost = findViewById(R.id.buttonWebServicePersonsInsert);
 
         PrimerParcial = findViewById(R.id.PrimerParcial);
+        FormWS = findViewById(R.id.formws);
 
 
         ButtonSalir = findViewById(R.id.ButtonSalir);
@@ -102,6 +102,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        FormWS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, FormActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         PrimerParcial.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -202,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void postPersona(){
 //        String URL_WS = "http://192.168.1.8/mobile/";
-        String URL_WS = "http://192.168.1.8/mobile/";
+        String URL_WS = "http://192.168.1.16/mobile/";
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL_WS)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -261,7 +270,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void getDataPersons(){
-        String URL_WS = "http://192.168.1.14/mobile/";
+        String URL_WS = "http://192.168.1.16/mobile/";
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL_WS)
                 .addConverterFactory(GsonConverterFactory.create())
