@@ -36,5 +36,6 @@ public class Ecuaciones extends AppCompatActivity {
                 textViewX2.setText(ecuacion.getX2());
             }
         });
+        return 0;
     }
 }

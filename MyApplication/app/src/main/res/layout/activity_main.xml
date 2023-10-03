@@ -10,6 +10,18 @@
 
 
     <Button
+        android:id="@+id/formws"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FORM WS"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.315"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.14" />
+
+    <Button
         android:id="@+id/buttonWebService4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,16 +46,16 @@
         app:layout_constraintVertical_bias="0.14" />
 
     <Button
-        android:id="@+id/formws"
+        android:id="@+id/Arqui_Software"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="FORM WS"
+        android:text="Arqui_Software"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.315"
+        app:layout_constraintHorizontal_bias="0.74"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.14" />
+        app:layout_constraintVertical_bias="0.21" />
 
     <Button
         android:id="@+id/buttonWebServicePersons"

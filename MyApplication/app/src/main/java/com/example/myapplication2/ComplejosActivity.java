@@ -87,5 +87,6 @@ public class ComplejosActivity extends AppCompatActivity {
                 textViewResultado.setText(ecuacion.getResutado());
             }
         });
+        return 0;
     }
 }

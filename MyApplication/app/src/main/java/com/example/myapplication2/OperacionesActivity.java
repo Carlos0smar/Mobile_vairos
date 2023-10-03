@@ -31,5 +31,6 @@ public class OperacionesActivity extends AppCompatActivity {
                 TextViewResultado.setText(String.valueOf(operaciones.sumar()));
             }
         });
+        return 0;
     }
 }

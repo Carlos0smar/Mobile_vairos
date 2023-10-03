@@ -10,5 +10,6 @@ public class Ejercicio2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ejercicio2);
+        return 0;
     }
 }

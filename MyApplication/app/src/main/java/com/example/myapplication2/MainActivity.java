@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     Button ButtonOperaciones, ButtonSalir, ButtonSegundoGrado, ButtonImaginarios, ButtonCalculadora,
             ButtonGraficos2D, ButtonGraficos2DTarea, ButtonEscalado, ButtonEnviar, ButtonBD, ButtonBDTarea,
             ButtonWebService, ButtonWebServicePersons, ButtonWebServiceCompras,
-            ButtonWebServicePersonsPost, PrimerParcial, FormWS, ButtonWebService4;
+            ButtonWebServicePersonsPost, PrimerParcial, FormWS, ButtonWebService4, ButtonArqui;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
         ButtonWebServicePersons = findViewById(R.id.buttonWebServicePersons);
         ButtonWebServicePersonsPost = findViewById(R.id.buttonWebServicePersonsInsert);
         ButtonWebService4 = findViewById(R.id.buttonWebService4);
+        ButtonWebService4 = findViewById(R.id.buttonWebService4);
+        ButtonArqui = findViewById(R.id.Arqui_Software);
+
 
         PrimerParcial = findViewById(R.id.PrimerParcial);
         FormWS = findViewById(R.id.formws);
@@ -100,6 +103,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, OperacionesActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ButtonArqui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Arqui_Software.class);
                 startActivity(intent);
             }
         });
@@ -216,6 +227,7 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+        return 0;
     }
 
     public void postPersona(){
