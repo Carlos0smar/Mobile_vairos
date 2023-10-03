@@ -27,15 +27,8 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-//    packagingOptions{
-//        exclude 'META-INF/ASL2.0'
-//        exclude 'META-INF/LICENSE'
-//        exclude 'META-INF/license.txt'
-//        exclude ' META-INF/NOTICE'
-//        exclude ' META-INF/notice.txt'
-//    }
-    packagingOptions.resources.excludes.add("/META-INF/{ASL2.0,LICENSE,license.txt,NOTICE,notice.txt}")
 
+    packagingOptions.resources.excludes.add("/META-INF/{ASL2.0,LICENSE,license.txt,NOTICE,notice.txt}")
 
 
 }
@@ -53,7 +46,14 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("io.reactivex.rjava2:rxjava:2.2.21")
+    implementation("io.reactivex.rxjava2:rxjava:2.2.21")
+    implementation("com.squareup.retrofit2:adapter-rxjava2:2.9.0")
+    implementation("io.reactivex.rxjava2:rxandroid:2.1.1")
+    implementation("io.reactivex.rxjava2:rxjava:2.2.21")
+    implementation("io.reactivex.rxjava2:rxjava:2.2.21")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation ("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11")
 }

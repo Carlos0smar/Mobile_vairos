@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     Button ButtonOperaciones, ButtonSalir, ButtonSegundoGrado, ButtonImaginarios, ButtonCalculadora,
             ButtonGraficos2D, ButtonGraficos2DTarea, ButtonEscalado, ButtonEnviar, ButtonBD, ButtonBDTarea,
             ButtonWebService, ButtonWebServicePersons, ButtonWebServiceCompras,
-            ButtonWebServicePersonsPost, PrimerParcial, FormWS;
+            ButtonWebServicePersonsPost, PrimerParcial, FormWS, ButtonWebService4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         ButtonWebServiceCompras = findViewById(R.id.buttonWebServiceCompras);
         ButtonWebServicePersons = findViewById(R.id.buttonWebServicePersons);
         ButtonWebServicePersonsPost = findViewById(R.id.buttonWebServicePersonsInsert);
+        ButtonWebService4 = findViewById(R.id.buttonWebService4);
 
         PrimerParcial = findViewById(R.id.PrimerParcial);
         FormWS = findViewById(R.id.formws);
@@ -99,6 +100,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, OperacionesActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ButtonWebService4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, WebService4Activity.class);
                 startActivity(intent);
             }
         });
