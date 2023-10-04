@@ -21,13 +21,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        ButtonGraficos.setOnClickListener(){
-            fun onClick(v: View?) {
-                setContentView(Graficos(this@MainActivity))
-            }
-
-
-        }
+//        ButtonGraficos.setOnClickListener(){
+//            fun onClick(v: View?) {
+//                setContentView(Graficos(this@MainActivity))
+//            }
+//        }
 
         ButtonDB.setOnClickListener(){
             val intent = Intent(this@MainActivity, DB_Activity::class.java)
