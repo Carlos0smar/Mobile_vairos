@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">kotlin_proyect</string>
+    <string name="botton1">1</string>
+    <string name="botton2">2</string>
+    <string name="botton3">3</string>
+    <string name="botton4">4</string>
+    <string name="botton5">5</string>
+    <string name="botton6">6</string>
+    <string name="botton7">7</string>
+    <string name="botton8">8</string>
+    <string name="botton9">9</string>
+    <string name="botton0">0</string>
+    <string name="bottonSum">+</string>
+    <string name="bottonRes">-</string>
+    <string name="bottonMul">*</string>
+    <string name="bottonDiv">/</string>
+    <string name="bottonIgual">=</string>
+    <string name="bottonC">C</string>
+
 </resources>

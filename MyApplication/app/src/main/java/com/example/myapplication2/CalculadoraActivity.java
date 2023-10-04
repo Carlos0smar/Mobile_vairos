@@ -113,6 +113,6 @@ public class CalculadoraActivity extends AppCompatActivity {
 //            last_number = result;
         });
 
-        return 0;
+//        return 0;
     }
 }

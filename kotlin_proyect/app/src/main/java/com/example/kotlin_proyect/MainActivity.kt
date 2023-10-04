@@ -15,11 +15,21 @@ class MainActivity : AppCompatActivity() {
         val ButtonGraficos = findViewById<Button>(R.id.buttonGraficos)
         val ButtonDB =findViewById<Button>(R.id.buttonDB)
         val ButtonFinalizar = findViewById<Button>(R.id.buttonFinalizar)
+        val ButtonCalculadora_Pro = findViewById<Button>(R.id.buttonCalculadora_Pro)
+
+
+
 
         ButtonCalculadora.setOnClickListener(){
             val intent = Intent(this@MainActivity, CalculadoraActivity::class.java)
             startActivity(intent)
         }
+
+        ButtonCalculadora_Pro.setOnClickListener(){
+            val intent = Intent(this@MainActivity, Calculadora_Pro_Activity::class.java)
+            startActivity(intent)
+        }
+
 
 //        ButtonGraficos.setOnClickListener(){
 //            fun onClick(v: View?) {

@@ -51,7 +51,7 @@ class CalculadoraActivity : AppCompatActivity() {
             val n_a = Integer.parseInt(textA.text.toString())
             val n_b = Integer.parseInt(textB.text.toString())
 
-            if( n_a == 0 || n_b == 0){
+            if(n_b == 0){
                 Toast.makeText(this@CalculadoraActivity, "Introduzca un número válido par la división", Toast.LENGTH_SHORT).show()
             }else{
                 oper.a = n_a
