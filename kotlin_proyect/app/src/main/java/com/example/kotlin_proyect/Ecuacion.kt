@@ -1,5 +1,5 @@
 package com.example.kotlin_proyect
-
+import kotlin.math.sqrt
 import kotlin.Float as Float
 
 class Ecuacion (a: Float, b: Float, c: Float){
@@ -22,24 +22,26 @@ class Ecuacion (a: Float, b: Float, c: Float){
         var s: String = ""
         var x1: Float = 0.0f
         var x2: Float = 0.0f
-        if(discriminante().toFloat() == 0.0f){
+        if(discriminante() == 0.0f){
             x1 = -_b / (2* _a)
             x2 = x1
             s = "x1 = x2 = " +x2
         }else{
             if(discriminante() > 0.0f){
-                x1 = ((-_b + Math.sqrt(discriminante())) / (2* _a)).toFloat()
-                x2 = ((-_b - Math.sqrt(discriminante())) / (2* _a)).toFloat()
+                x1 = ((-_b + sqrt(discriminante())) / (2* _a)).toFloat()
+                x2 = ((-_b - sqrt(discriminante())) / (2* _a)).toFloat()
                 s = "x1 = " +x1 + ", x2 ="+x2
             }else{
                 var preal: Float = 0.0f
                 var pimag: Float = 0.0f
                 preal = -_b /(2 * _a)
-                pimag = (Math.sqrt(Math.abs(discriminante()).toDouble()) / (2* _a)).toFloat()
+                pimag = (sqrt(Math.abs(discriminante())) / (2* _a)).toFloat()
                 s = "x1 = " + preal + " + " + pimag + " i,"+" x2 = "+ preal+" - "+pimag+"i"
             }
 
         }
+        return s
+
     }
 
 }

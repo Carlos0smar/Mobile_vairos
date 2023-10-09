@@ -18,6 +18,7 @@ import java.util.List;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -58,7 +59,6 @@ public class WebService4Activity extends AppCompatActivity {
                 recoveryData();
             }
         });
-        return 0;
     }
 
 
@@ -146,67 +146,136 @@ public class WebService4Activity extends AppCompatActivity {
     }
 
 
+//
+//    private void recoveryData(){
+//        String URL_WS = "http://192.168.1.24/movil/";
+//
+//        Gson gson = new GsonBuilder().setLenient().create();
+//
+//        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+//        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+//        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+//
+//
+//        Retrofit builder = new Retrofit.Builder();
+//        builder.baseUrl(URL_WS);
+//        builder.client(client);
+//        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync());
+//        builder.addConverterFactory(GsonConverterFactory.create(gson);
+//        builder.build();
+//        WebServiceAPI webServiceApi2 = builder.create(WebServiceAPI.class);
+//
+//        List<Observable<?>> requests = new ArrayList<>();
+//
+//        // Make a collection of all requests you need to call at once, there can be any number of requests, not only 3. You can have 2 or 5, or 100.
+//        requests.add(webServiceApi2.getVentasObs());
+//        requests.add(webServiceApi2.getPersonsObs());
+//        requests.add(webServiceApi2.getServiciosObs());
+//        requests.add(webServiceApi2.getComprasObs());
+//
+//
+//        Disposable obs = Observable.zip(requests, new Function<Object[], Object>() {
+//                            @Override
+//                            public Object apply(Object[] objects) throws Exception {
+//                                // Objects[] is an array of combined results of completed requests
+//                                listDataCompras = (List<WSCompras>)objects[0];
+//                                listDataPersons = (List<WSPersons>)objects[1];
+//                                listDataServicios = (List<WSServicios>)objects[2];
+//                                listDataVentas = (List<WSVentas>)objects[3];
+//                                Log.d("Datos","Finalizado con exito apply "+objects.length+": "+listDataCompras.get(0)+" "+listDataPersons.get(0)+" "+listDataServicios.get(0)+" "+listDataVentas.get(0));
+//                                return new Object();
+//                            }
+//
+//
+//                        })
+//
+//
+//
+//
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribeWith(
+//                        new DisposableObserver<Object>(){
+//                            @Override
+//                            public void onNext(Object o) {
+//                            }
+//                            @Override
+//                            public void onError(Throwable e) {
+//                                Log.d("Datos","OnError ");
+//                            }
+//                            @Override
+//                            public void onComplete() {
+//
+//                                Log.d("Datos","Finalizado con exito onComplete ");
+//                            }
+//                        });
+//    }
 
-    private void recoveryData(){
-        String URL_WS = "http://192.168.1.24/movil/";
-
+    private void recoveryData() {
+        String URL_WS = "http://192.168.0.11/movil/";
         Gson gson = new GsonBuilder().setLenient().create();
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
-        Object Utils = null;
-        Retrofit retrofit2 = new Retrofit.Builder()
-                .baseUrl(URL_WS)
-                .client(client)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(URL_WS);
+        builder.client(client);
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        builder.addConverterFactory(GsonConverterFactory.create(gson));
+        Retrofit retrofit2 = builder.build();
         WebServiceAPI webServiceApi2 = retrofit2.create(WebServiceAPI.class);
-
         List<Observable<?>> requests = new ArrayList<>();
 
-        // Make a collection of all requests you need to call at once, there can be any number of requests, not only 3. You can have 2 or 5, or 100.
-        requests.add(webServiceApi2.getVentasObs());
         requests.add(webServiceApi2.getPersonsObs());
-        requests.add(webServiceApi2.getServiciosObs());
         requests.add(webServiceApi2.getComprasObs());
-
+        requests.add(webServiceApi2.getVentasObs());
+        requests.add(webServiceApi2.getServiciosObs());
 
         Disposable obs = Observable.zip(requests, new Function<Object[], Object>() {
-                            @Override
-                            public Object apply(Object[] objects) throws Exception {
-                                // Objects[] is an array of combined results of completed requests
-                                listDataCompras = (List<WSCompras>)objects[0];
-                                listDataPersons = (List<WSPersons>)objects[1];
-                                listDataServicios = (List<WSServicios>)objects[2];
-                                listDataVentas = (List<WSVentas>)objects[3];
-                                Log.d("Datos","Finalizado con exito apply "+objects.length+": "+listDataCompras.get(0)+" "+listDataPersons.get(0)+" "+listDataServicios.get(0)+" "+listDataVentas.get(0));
-                                return new Object();
-                            }
-
-
-                        })
-
-
-
-
+                    @Override
+                    public Object apply(Object[] objects) throws Exception {
+                        listDataCompras = (List<WSCompras>)objects[0];
+                        listDataPersons = (List<WSPersons>)objects[1];
+                        listDataServicios = (List<WSServicios>)objects[2];
+                        listDataVentas = (List<WSVentas>)objects[3];
+                        return new Object();
+                    }
+                })
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(
-                        new DisposableObserver<Object>(){
+                        new DisposableObserver<Object>() {
                             @Override
                             public void onNext(Object o) {
+                                if (listDataPersons != null && !listDataPersons.isEmpty()) {
+                                    String paterno = listDataPersons.get(0).getPaterno(); // Asumiendo que tu clase WSPersons tiene un método getName()
+                                    Toast.makeText(WebService4Activity.this, paterno, Toast.LENGTH_SHORT).show();
+                                }
+
+                                if (listDataCompras != null && !listDataCompras.isEmpty()) {
+                                    String descripcion = listDataCompras.get(0).getDescripcion();  // Suponiendo que WSCompras tiene un método getDetail()
+                                    Toast.makeText(WebService4Activity.this, descripcion, Toast.LENGTH_SHORT).show();
+                                }
+
+                                if (listDataVentas != null && !listDataVentas.isEmpty()) {
+                                    String venta = listDataVentas.get(0).getLugar();  // Suponiendo que WSCompras tiene un método getDetail()
+                                    Toast.makeText(WebService4Activity.this, venta, Toast.LENGTH_SHORT).show();
+                                }
+
+                                if (listDataServicios != null && !listDataServicios.isEmpty()) {
+                                    String reserva = listDataServicios.get(0).getDescripcion();  // Suponiendo que WSCompras tiene un método getDetail()
+                                    Toast.makeText(WebService4Activity.this, reserva, Toast.LENGTH_SHORT).show();
+                                }
                             }
                             @Override
                             public void onError(Throwable e) {
-                                Log.d("Datos","OnError ");
+                                Log.d("Datos", "OnError ");
                             }
                             @Override
                             public void onComplete() {
-
-                                Log.d("Datos","Finalizado con exito onComplete ");
+                                Log.d("Datos", "Finalizado con exito onComplete ");
                             }
-                        });
+                 });
     }
 }
