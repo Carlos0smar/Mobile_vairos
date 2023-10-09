@@ -52,12 +52,13 @@ class CalculadoraActivity : AppCompatActivity() {
             val n_b = Integer.parseInt(textB.text.toString())
 
             if(n_b == 0){
-                Toast.makeText(this@CalculadoraActivity, "Introduzca un número válido par la división", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@CalculadoraActivity, "Introduzca un número válido para la división", Toast.LENGTH_SHORT).show()
             }else{
                 oper.a = n_a
                 oper.b = n_b
                 val resul = oper.division()
                 resultado.setText(resul.toString())
+
             }
         }
     }

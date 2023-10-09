@@ -16,7 +16,13 @@ class MainActivity : AppCompatActivity() {
         val ButtonDB =findViewById<Button>(R.id.buttonDB)
         val ButtonFinalizar = findViewById<Button>(R.id.buttonFinalizar)
         val ButtonCalculadora_Pro = findViewById<Button>(R.id.buttonCalculadora_Pro)
+        val ButtonEcuaciones_2do_grado = findViewById<Button>(R.id.buttonEcuaciones_segundo_grado)
 
+
+        ButtonEcuaciones_2do_grado.setOnClickListener(){
+            val intent = Intent(this@MainActivity, Ecuacion_SegundoGrado::class.java)
+            startActivity(intent)
+        }
 
 
 
