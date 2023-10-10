@@ -31,7 +31,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 import io.reactivex.Observable;
-import java.util.function.Function;
+import io.reactivex.functions.Function;
+
+//import java.util.function.Function;
 
 
 public class WebService4Activity extends AppCompatActivity {
