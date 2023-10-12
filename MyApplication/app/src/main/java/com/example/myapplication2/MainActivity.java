@@ -227,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-        return 0;
+//        return 0;
     }
 
     public void postPersona(){

@@ -30,11 +30,11 @@ public interface WebServiceAPI {
 //    Call<List<WSCompras>>getCompras();
 
     @GET("primer.php")
-    io.reactivex.Observable<?> getPersonsObs();
+    io.reactivex.Observable<List<WSPersons>>getPersonsObs();
     @GET("primer1.php")
-    io.reactivex.Observable<?> getServiciosObs();
+    io.reactivex.Observable<List<WSServicios>> getServiciosObs();
     @GET("primer2.php")
     io.reactivex.Observable<List<WSVentas>>getVentasObs();
     @GET("primer3.php")
-    io.reactivex.Observable<?> getComprasObs();
+    io.reactivex.Observable<List<WSCompras>>getComprasObs();
 }

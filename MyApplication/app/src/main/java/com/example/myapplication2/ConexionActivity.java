@@ -22,6 +22,6 @@ public class ConexionActivity extends AppCompatActivity {
         Oper oper2 = (Oper)intent.getSerializableExtra("MiObjeto");
         Toast.makeText(ConexionActivity.this, "Resultado: " + oper2.suma(),Toast.LENGTH_SHORT).show();
 
-        return 0;
+//        return 0;
     }
 }

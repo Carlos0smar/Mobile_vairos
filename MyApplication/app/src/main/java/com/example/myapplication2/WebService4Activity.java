@@ -147,73 +147,8 @@ public class WebService4Activity extends AppCompatActivity {
         });
     }
 
-
-//
-//    private void recoveryData(){
-//        String URL_WS = "http://192.168.1.24/movil/";
-//
-//        Gson gson = new GsonBuilder().setLenient().create();
-//
-//        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-//        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-//        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
-//
-//
-//        Retrofit builder = new Retrofit.Builder();
-//        builder.baseUrl(URL_WS);
-//        builder.client(client);
-//        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync());
-//        builder.addConverterFactory(GsonConverterFactory.create(gson);
-//        builder.build();
-//        WebServiceAPI webServiceApi2 = builder.create(WebServiceAPI.class);
-//
-//        List<Observable<?>> requests = new ArrayList<>();
-//
-//        // Make a collection of all requests you need to call at once, there can be any number of requests, not only 3. You can have 2 or 5, or 100.
-//        requests.add(webServiceApi2.getVentasObs());
-//        requests.add(webServiceApi2.getPersonsObs());
-//        requests.add(webServiceApi2.getServiciosObs());
-//        requests.add(webServiceApi2.getComprasObs());
-//
-//
-//        Disposable obs = Observable.zip(requests, new Function<Object[], Object>() {
-//                            @Override
-//                            public Object apply(Object[] objects) throws Exception {
-//                                // Objects[] is an array of combined results of completed requests
-//                                listDataCompras = (List<WSCompras>)objects[0];
-//                                listDataPersons = (List<WSPersons>)objects[1];
-//                                listDataServicios = (List<WSServicios>)objects[2];
-//                                listDataVentas = (List<WSVentas>)objects[3];
-//                                Log.d("Datos","Finalizado con exito apply "+objects.length+": "+listDataCompras.get(0)+" "+listDataPersons.get(0)+" "+listDataServicios.get(0)+" "+listDataVentas.get(0));
-//                                return new Object();
-//                            }
-//
-//
-//                        })
-//
-//
-//
-//
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribeWith(
-//                        new DisposableObserver<Object>(){
-//                            @Override
-//                            public void onNext(Object o) {
-//                            }
-//                            @Override
-//                            public void onError(Throwable e) {
-//                                Log.d("Datos","OnError ");
-//                            }
-//                            @Override
-//                            public void onComplete() {
-//
-//                                Log.d("Datos","Finalizado con exito onComplete ");
-//                            }
-//                        });
-//    }
-
     private void recoveryData() {
-        String URL_WS = "http://192.168.0.11/movil/";
+        String URL_WS = "http://10.250.19.127/movil/";
         Gson gson = new GsonBuilder().setLenient().create();
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();

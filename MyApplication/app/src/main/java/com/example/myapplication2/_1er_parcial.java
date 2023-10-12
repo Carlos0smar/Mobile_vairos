@@ -51,6 +51,6 @@ public class _1er_parcial extends AppCompatActivity {
                 finish();
             }
         });
-        return 0;
+//        return 0;
     }
 }
