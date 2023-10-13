@@ -11,9 +11,17 @@ import org.w3c.dom.Text
 class DB_Activity : AppCompatActivity() {
     var dbHandler: BaseDatos? = null
     var listTasks: List<Lugares> = ArrayList<Lugares>()
-    override fun onCreate(savedInstanceState: Bundle?) {
 
-        val ButtonCear = findViewById<Button>(R.id.buttonCrear)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_db)
+
+        dbHandler = BaseDatos(this)
+        var success: Boolean = false
+        val lugares: Lugares = Lugares()
+
+        val ButtonCrear = findViewById<Button>(R.id.buttonCrear)
         val ButtonMostrar_todo = findViewById<Button>(R.id.buttonMostrar)
         val ButtonMostrar_unico = findViewById<Button>(R.id.buttonMostrar_unico)
         val nombre_ = findViewById<EditText>(R.id.editTextNombre)
@@ -24,63 +32,57 @@ class DB_Activity : AppCompatActivity() {
         val ButtonDelete_lugar = findViewById<Button>(R.id.buttonDelete_lugar)
 
 
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_db)
-
-        dbHandler = BaseDatos(this)
-        var success: Boolean = false
-        val lugares: Lugares = Lugares()
 
 
-        ButtonCear.setOnClickListener(){
+
+
+        ButtonCrear.setOnClickListener(){
             var nombre = nombre_.text.toString()
             var descripcion = descripcion_.text.toString()
             var latitud = latitud_.text.toString()
             var longitud = longitud_.text.toString()
-
+            success = false
             lugares.nombre = nombre
             lugares.descripcion = descripcion
             lugares.latitud = latitud.toFloat()
             lugares.longitud = longitud.toFloat()
             success = dbHandler?.addLugar(lugares) as Boolean
-
+            Log.d("Datos","--->" + success.toString())
         }
 
-        ButtonCear.setOnClickListener(){
-            var nombre = nombre_.text.toString()
-            var descripcion = descripcion_.text.toString()
-            var latitud = latitud_.text.toString()
-            var longitud = longitud_.text.toString()
+//        ButtonCrear.setOnClickListener(){
+//            lugares.nombre = "nombre1"
+//            lugares.descripcion = "descripcion1"
+//            lugares.latitud = 1.3f
+//            lugares.longitud = 2.4f
+//            success = dbHandler?.addLugar(lugares) as Boolean
+//
+//            Log.d("Datos","--->" + success.toString())
+//
+//        }
 
-            lugares.nombre = nombre
-            lugares.descripcion = descripcion
-            lugares.latitud = latitud.toFloat()
-            lugares.longitud = longitud.toFloat()
-            success = dbHandler?.addLugar(lugares) as Boolean
-
-        }
-
-        ButtonMostrar_todo.setOnClickListener(){
-            var nombre = nombre_.text.toString()
-            var descripcion = descripcion_.text.toString()
-            var latitud = latitud_.text.toString()
-            var longitud = longitud_.text.toString()
-
-            lugares.nombre = nombre
-            lugares.descripcion = descripcion
-            lugares.latitud = latitud.toFloat()
-            lugares.longitud = longitud.toFloat()
-            success = dbHandler?.addLugar(lugares) as Boolean
-
-        }
-
-
+//        ButtonMostrar_todo.setOnClickListener(){
+//            var nombre = nombre_.text.toString()
+//            var descripcion = descripcion_.text.toString()
+//            var latitud = latitud_.text.toString()
+//            var longitud = longitud_.text.toString()
+//
+//            lugares.nombre = nombre
+//            lugares.descripcion = descripcion
+//            lugares.latitud = latitud.toFloat()
+//            lugares.longitud = longitud.toFloat()
+//            success = dbHandler?.addLugar(lugares) as Boolean
+//
+//        }
+//
+//
         ButtonMostrar_unico.setOnClickListener(){
             var id = text_id.text.toString()
             var id_ = Integer.parseInt(id)
             val success = dbHandler?.getLugar(id_)
             if (success != null) {
                 Toast.makeText(this@DB_Activity, "Nombre: ${success.nombre}\nDescripción: ${success.descripcion}\nLatitud: ${success.latitud}\nLongitud: ${success.longitud}", Toast.LENGTH_SHORT).show()
+                Log.d("Datos","--->" + success.toString())
             }
 
         }
@@ -89,6 +91,8 @@ class DB_Activity : AppCompatActivity() {
             var id = text_id.text.toString()
             var id_ = Integer.parseInt(id)
             success = dbHandler?.deleteLugar(id_) as Boolean
+            Log.d("Datos","--->" + success.toString())
+
         }
 
     }

@@ -100,8 +100,8 @@ class BaseDatos (context: Context): SQLiteOpenHelper(context,BaseDatos.NOMBRE_BA
 
     companion object{
         private val VERSION_BASE_DATOS = 1
-        private val NOMBRE_BASE_DATOS = "basedatosmovil"
-        private val NOMBRE_TABLA = "persona"
+        private val NOMBRE_BASE_DATOS = "basedatossis104"
+        private val NOMBRE_TABLA = "lugares"
         private val ID = "id"
         private val NOMBRE = "nombre"
         private val DESCRIPCION = "descripcion"
