@@ -56,14 +56,10 @@ public class WebService4Activity extends AppCompatActivity {
         ButtonImprimir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-//                getAllData();
                 recoveryData();
             }
         });
     }
-
-
 
     public void getAllData(){
         String URL_WS = "http://192.168.1.6:80/movil/";
@@ -148,7 +144,7 @@ public class WebService4Activity extends AppCompatActivity {
     }
 
     private void recoveryData() {
-        String URL_WS = "http://10.250.19.127/movil/";
+        String URL_WS = "http://192.168.1.15:80/mobile/";
         Gson gson = new GsonBuilder().setLenient().create();
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -186,25 +182,26 @@ public class WebService4Activity extends AppCompatActivity {
                             @Override
                             public void onNext(Object o) {
                                 if (listDataPersons != null && !listDataPersons.isEmpty()) {
-                                    String paterno = listDataPersons.get(0).getPaterno(); // Asumiendo que tu clase WSPersons tiene un método getName()
-                                    Toast.makeText(WebService4Activity.this, paterno, Toast.LENGTH_SHORT).show();
+                                    String paterno = listDataPersons.get(0).getPaterno();
+                                    Toast.makeText(WebService4Activity.this, "Paterno: " + paterno, Toast.LENGTH_SHORT).show();
                                 }
 
                                 if (listDataCompras != null && !listDataCompras.isEmpty()) {
-                                    String descripcion = listDataCompras.get(0).getDescripcion();  // Suponiendo que WSCompras tiene un método getDetail()
-                                    Toast.makeText(WebService4Activity.this, descripcion, Toast.LENGTH_SHORT).show();
+                                    String descripcion = listDataCompras.get(0).getDescripcion();
+                                    Toast.makeText(WebService4Activity.this, "Descripción de compras: " + descripcion, Toast.LENGTH_SHORT).show();
                                 }
 
                                 if (listDataVentas != null && !listDataVentas.isEmpty()) {
-                                    String venta = listDataVentas.get(0).getLugar();  // Suponiendo que WSCompras tiene un método getDetail()
-                                    Toast.makeText(WebService4Activity.this, venta, Toast.LENGTH_SHORT).show();
+                                    String venta = listDataVentas.get(0).getLugar();
+                                    Toast.makeText(WebService4Activity.this, "Lugar de venta: " + venta, Toast.LENGTH_SHORT).show();
                                 }
 
                                 if (listDataServicios != null && !listDataServicios.isEmpty()) {
-                                    String reserva = listDataServicios.get(0).getDescripcion();  // Suponiendo que WSCompras tiene un método getDetail()
-                                    Toast.makeText(WebService4Activity.this, reserva, Toast.LENGTH_SHORT).show();
+                                    String reserva = listDataServicios.get(0).getDescripcion();
+                                    Toast.makeText(WebService4Activity.this, "Descripción de reserva: " + reserva, Toast.LENGTH_SHORT).show();
                                 }
                             }
+
                             @Override
                             public void onError(Throwable e) {
                                 Log.d("Datos", "OnError ");

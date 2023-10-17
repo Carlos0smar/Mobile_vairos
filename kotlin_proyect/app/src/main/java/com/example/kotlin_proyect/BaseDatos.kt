@@ -5,11 +5,21 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 
 class BaseDatos (context: Context): SQLiteOpenHelper(context,BaseDatos.NOMBRE_BASE_DATOS,null,BaseDatos.VERSION_BASE_DATOS){
     override fun onCreate(db: SQLiteDatabase?) {
         val CREAR_TABLA = "CREATE TABLE $NOMBRE_TABLA ($ID INTEGER PRIMARY KEY AUTOINCREMENT,$NOMBRE TEXT,$DESCRIPCION TEXT,$LATITUD FLOAT,$LONGITUD FLOAT);"
-        db?.execSQL(CREAR_TABLA)
+        try {
+            db?.execSQL(CREAR_TABLA)
+            Log.d("Datos","---> correcto")
+        } catch (e: Exception) {
+            // Ocurrió un error durante la creación de la tabla
+            e.printStackTrace()
+            Log.d("Datos","---> INCORRECTO")
+
+        }
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -100,7 +110,7 @@ class BaseDatos (context: Context): SQLiteOpenHelper(context,BaseDatos.NOMBRE_BA
 
     companion object{
         private val VERSION_BASE_DATOS = 1
-        private val NOMBRE_BASE_DATOS = "basedatossis104"
+        private val NOMBRE_BASE_DATOS = "basedatosmovil"
         private val NOMBRE_TABLA = "lugares"
         private val ID = "id"
         private val NOMBRE = "nombre"
