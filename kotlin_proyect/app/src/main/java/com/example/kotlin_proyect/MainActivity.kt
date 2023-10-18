@@ -7,7 +7,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)  {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -17,6 +17,8 @@ class MainActivity : AppCompatActivity() {
         val ButtonFinalizar = findViewById<Button>(R.id.buttonFinalizar)
         val ButtonCalculadora_Pro = findViewById<Button>(R.id.buttonCalculadora_Pro)
         val ButtonEcuaciones_2do_grado = findViewById<Button>(R.id.buttonEcuaciones_segundo_grado)
+        val ButtonTriangulo_color = findViewById<Button>(R.id.buttonTriangulo_color)
+
 
 
         ButtonEcuaciones_2do_grado.setOnClickListener(){
@@ -37,17 +39,16 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-//        ButtonGraficos.setOnClickListener(){
-//            fun onClick(v: View?) {
-//                setContentView(Graficos(this@MainActivity))
-//            }
-//        }
+        ButtonGraficos.setOnClickListener(View.OnClickListener { setContentView(Graficos(this@MainActivity)) })
+
+        ButtonTriangulo_color.setOnClickListener(View.OnClickListener { setContentView(triangulo_color(this@MainActivity)) })
 
         ButtonDB.setOnClickListener(){
             val intent = Intent(this@MainActivity, DB_Activity::class.java)
             startActivity(intent)
 
         }
+
 
         ButtonFinalizar.setOnClickListener(){
             fun onClick(v: View?) { finish() }
