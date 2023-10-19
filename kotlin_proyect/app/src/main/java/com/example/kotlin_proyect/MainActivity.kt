@@ -18,6 +18,8 @@ class MainActivity : AppCompatActivity() {
         val ButtonCalculadora_Pro = findViewById<Button>(R.id.buttonCalculadora_Pro)
         val ButtonEcuaciones_2do_grado = findViewById<Button>(R.id.buttonEcuaciones_segundo_grado)
         val ButtonTriangulo_color = findViewById<Button>(R.id.buttonTriangulo_color)
+        val ButtonTriangulo_escalado = findViewById<Button>(R.id.buttonTriangulo_escalado)
+        val ButtonRectangulo_escalado = findViewById<Button>(R.id.buttonRectangulo_escalado)
 
 
 
@@ -42,6 +44,13 @@ class MainActivity : AppCompatActivity() {
         ButtonGraficos.setOnClickListener(View.OnClickListener { setContentView(Graficos(this@MainActivity)) })
 
         ButtonTriangulo_color.setOnClickListener(View.OnClickListener { setContentView(triangulo_color(this@MainActivity)) })
+
+        ButtonTriangulo_escalado.setOnClickListener(View.OnClickListener { setContentView(triangulo_scalado(this@MainActivity)) })
+
+        ButtonRectangulo_escalado.setOnClickListener(View.OnClickListener { setContentView(rectangulo_escalado(this@MainActivity)) })
+
+
+
 
         ButtonDB.setOnClickListener(){
             val intent = Intent(this@MainActivity, DB_Activity::class.java)

@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.Path
 import android.view.View
 
 
@@ -15,20 +16,35 @@ class triangulo_scalado(context: Context?) : View(context) {
         canvas?.drawColor(Color.WHITE)
         var paint = Paint()
 
-
-
         val width: Int = context.resources.displayMetrics.widthPixels
         val height: Int = context.resources.displayMetrics.heightPixels
 
+        val maxDimension = if (width < height) width else height
+        val triangleHeight = (Math.sqrt(3.0) * maxDimension / 2).toFloat()
 
-        val xCent = width / 2
-        val yCent = height / 2
-        var radio = 100.0
-        val radioMaximo = Math.min(xCent, yCent)
-        if (radio > radioMaximo) {
-            radio = radioMaximo.toDouble()
+        var scaleFactor = 1000f
+
+        if (scaleFactor > 1.0f) {
+            scaleFactor = 1.0f
         }
-        canvas?.drawRect(5.0f+10.0f,5.0f+20.0f,5.0f+30.0f,10.0f, paint)
+
+        val scaledDimension = maxDimension * scaleFactor
+        val scaledTriangleHeight = triangleHeight * scaleFactor
+
+        val paintColor = Color.rgb(255, 0, 0) // Color rojo
+        paint.color = paintColor
+
+        val path = Path()
+        val x = (width - scaledDimension) / 2
+        val y = (height - scaledTriangleHeight) / 2
+        path.moveTo(x, y)
+        path.lineTo(x + scaledDimension, y)
+        path.lineTo(width / 2.0f, y + scaledTriangleHeight)
+        path.close()
+
+        canvas?.drawPath(path, paint)
+
+
 
     }
 }

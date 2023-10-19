@@ -27,6 +27,7 @@ class Graficos(context: Context?) : View(context) {
             paint.setColor(Color.rgb(2+(5*i),5+(7*i),90+(10*i)))
 
             canvas?.drawRect(5.0f*i+10.0f,5.0f*i+20.0f,5.0f*i+30.0f,10.0f, paint)
+
         }
     }
 }
