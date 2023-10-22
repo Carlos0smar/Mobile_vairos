@@ -8,6 +8,18 @@
 
 
     <Button
+        android:id="@+id/buttonGraficador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Graficacador"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.414"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.288" />
+
+    <Button
         android:id="@+id/buttonTriangulo_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

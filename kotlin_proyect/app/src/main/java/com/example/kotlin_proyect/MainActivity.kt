@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         val ButtonTriangulo_color = findViewById<Button>(R.id.buttonTriangulo_color)
         val ButtonTriangulo_escalado = findViewById<Button>(R.id.buttonTriangulo_escalado)
         val ButtonRectangulo_escalado = findViewById<Button>(R.id.buttonRectangulo_escalado)
+        val ButtonGraficador = findViewById<Button>(R.id.buttonGraficador)
 
 
 
@@ -49,6 +50,7 @@ class MainActivity : AppCompatActivity() {
 
         ButtonRectangulo_escalado.setOnClickListener(View.OnClickListener { setContentView(rectangulo_escalado(this@MainActivity)) })
 
+        ButtonGraficador.setOnClickListener(View.OnClickListener { setContentView(Graficador(this@MainActivity)) })
 
 
 

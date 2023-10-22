@@ -22,7 +22,7 @@ class triangulo_scalado(context: Context?) : View(context) {
         val maxDimension = if (width < height) width else height
         val triangleHeight = (Math.sqrt(3.0) * maxDimension / 2).toFloat()
 
-        var scaleFactor = 1000f
+        var scaleFactor = 10000f
 
         if (scaleFactor > 1.0f) {
             scaleFactor = 1.0f

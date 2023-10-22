@@ -19,8 +19,8 @@ class rectangulo_escalado(context: Context?) : View(context) {
         paint.strokeWidth = 5f
         println("ancho: "+width)
 
-        var FigAlto = 1000
-        var FigAncho = 7000
+        var FigAlto = 4000
+        var FigAncho = 300
 
         val ancho = width.toFloat()
         val alto = height.toFloat()
@@ -35,16 +35,9 @@ class rectangulo_escalado(context: Context?) : View(context) {
         }
 
 
-//        // Triángulo
-//        val path = Path()
-//        path.moveTo(ancho * 0.05f, alto * 0.05f)
-//        path.lineTo(ancho * 0.05f, alto * 0.05f + FigAlto)
-//        path.lineTo(ancho * 0.05f + FigAncho, alto * 0.05f + FigAlto)
-//        path.close()
-//        canvas.drawPath(path, paint)
 
         // Rectángulo
-        val left = (ancho /2) * 0.05f
+        val left = (ancho /2) * 0.6f
         val top = (alto/2) * 0.6f
         val right = left + FigAncho
         val bottom = top + FigAlto
