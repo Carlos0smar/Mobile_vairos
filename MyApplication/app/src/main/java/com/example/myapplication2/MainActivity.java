@@ -184,12 +184,12 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-        ButtonGraficos2D.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setContentView(new Graficos2D(MainActivity.this));
-            }
-        });
+//        ButtonGraficos2D.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                setContentView(new Graficos2D(MainActivity.this));
+//            }
+//        });
 
         ButtonGraficos2DTarea.setOnClickListener(new View.OnClickListener() {
             @Override
