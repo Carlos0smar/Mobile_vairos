@@ -2,6 +2,7 @@ package com.example.kotlin_proyect
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
@@ -15,6 +16,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainActivity : AppCompatActivity() {
 
     var listDataPersons: List<WSPersons> = ArrayList()
+    //Instancia de Retrofit
+    private val retrofit = Retrofit.Builder()
+        .baseUrl("http://192.168.68.115/movil/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
     override fun onCreate(savedInstanceState: Bundle?)  {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -30,9 +36,22 @@ class MainActivity : AppCompatActivity() {
         val ButtonRectangulo_escalado = findViewById<Button>(R.id.buttonRectangulo_escalado)
         val ButtonGraficador = findViewById<Button>(R.id.buttonGraficador)
         val ButtonWSA_1_GET = findViewById<Button>(R.id.buttonWSA_1_GET)
+        val Button_practica = findViewById<Button>(R.id.buttonPractica_course)
+        val Segundo_Parcial = findViewById<Button>(R.id.buttonSegundo_parcial)
+        val ButtonWSA_2_GET = findViewById<Button>(R.id.buttonWSA_2_GET)
 
 
 
+
+
+        Button_practica.setOnClickListener(){
+            val intent = Intent(this@MainActivity, practica_1_course::class.java)
+            startActivity(intent)
+        }
+        Segundo_Parcial.setOnClickListener(){
+            val intent = Intent(this@MainActivity, Segundo_parcial::class.java)
+            startActivity(intent)
+        }
 
         ButtonEcuaciones_2do_grado.setOnClickListener(){
             val intent = Intent(this@MainActivity, Ecuacion_SegundoGrado::class.java)
@@ -79,10 +98,118 @@ class MainActivity : AppCompatActivity() {
             getDataPersons()
         }
 
+        ButtonWSA_2_GET.setOnClickListener(){
+            getLugaresREST()
+        }
 
     }
+    fun getLugaresREST() {
+
+        val webApi = retrofit.create(WebServicesAPI::class.java)
+        webApi.getLugares().enqueue(object : Callback<List<ResponseLugar>>{
+            override fun onResponse(call: Call<List<ResponseLugar>>,response: Response<List<ResponseLugar>>) {
+                if(response.isSuccessful){
+                    Log.d("Datos","Exito"+ (response.body()?.get(0)?.nombre ?: "oso"))
+                }else{
+                    Log.d("Datos","Paso algo")
+                }
+            }
+            override fun onFailure(call: Call<List<ResponseLugar>>, t: Throwable) {
+                Log.d("Datos","Error"+t.message.toString())
+            }
+        })
+    }
+
+//    fun getLugaresREST() {
+//
+//        val webApi = retrofit.create(WebAPI::class.java)
+//        webApi.getLugares().enqueue(object : Callback<List<ResponseLugar>>{
+//            override fun onResponse(call: Call<List<ResponseLugar>>,response: Response<List<ResponseLugar>>) {
+//                if(response.isSuccessful){
+//                    Log.d("Datos","Exito"+ (response.body()?.get(0)?.nombre ?: "oso"))
+//                }else{
+//                    Log.d("Datos","Paso algo")
+//                }
+//            }
+//            override fun onFailure(call: Call<List<ResponseLugar>>, t: Throwable) {
+//                Log.d("Datos","Error"+t.message.toString())
+//            }
+//        })
+//    }
+//    fun postLugaresREST(){
+//        val retrofitP = Retrofit.Builder()
+//            .baseUrl("http://192.168.165.241:81/sis104/")
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .build()
+//
+//        val lugar = PostLugar(  id = null,
+//            nombre = "Beni",
+//            descripcion = "San Borja",
+//            latitud = 32.5f,
+//            longitud = 45.7f )
+//
+//        val webApi = retrofitP.create(WebAPI::class.java)
+//
+//        webApi.addLugar(lugar).enqueue(object: Callback<ResponseBody>{
+//
+//            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+//                if(response.isSuccessful)
+//                    Log.d("Datos","Se envio, verificar "+response.body().toString())
+//                else
+//                    Log.d("Datos","Se envio pero fallo "+ response.body().toString())
+//            }
+//
+//            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+//                Log.d("Datos","Falla "+t.message.toString())
+//            }
+//
+//        })
+//    }
+//
+//    fun getMultipleRequest(){
+//        val logging = HttpLoggingInterceptor()
+//        logging.level = HttpLoggingInterceptor.Level.BODY
+//
+//        val httpClient = OkHttpClient.Builder()
+//        httpClient.addInterceptor(logging)
+//
+//        val gson = GsonBuilder()
+//            .setLenient()
+//            .create()
+//
+//        val retrofit = Retrofit.Builder()
+//            .baseUrl("http://192.168.165.241:81/sis104/")
+//            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+//            .addConverterFactory(GsonConverterFactory.create(gson))
+//            .client(httpClient.build())
+//            .build()
+//        val service: WebAPI = retrofit.create<WebAPI>(WebAPI::class.java)
+//
+//        val requests = ArrayList<Observable<*>>()
+//
+//        requests.add(service.getResponseOne())
+//        requests.add(service.getResponseTwo())
+//        requests.add(service.getResponseThree())
+//        requests.add(service.getResponseFour())
+//
+//        val obs = Observable.zip(
+//            requests
+//        ) { objects -> // Objects[] is an array of combined results of completed requests
+//            Log.d("Datos","Finalizado")
+//            Any()
+//        } // After all requests had been performed the next observer will receive the Object, returned from Function
+//            .subscribe( // Will be triggered if all requests will end successfully (4xx and 5xx also are successful requests too)
+//                { o ->
+//                    Log.d("Datos", "Finalizado con exito accept  $o")
+//                }
+//            )  // Will be triggered if any error during requests will happen
+//            { e -> //Do something on error completion of requests
+//                Log.d("Datos", "Error ---*> $e")
+//            }
+//
+//    }
     fun getDataPersons() {
-        val URL_WS = "http://192.168.1.18:80/mobile/"
+        val URL_WS = "http://192.168.1.12/mobile/"
         val retrofit = Retrofit.Builder()
             .baseUrl(URL_WS)
             .addConverterFactory(GsonConverterFactory.create())

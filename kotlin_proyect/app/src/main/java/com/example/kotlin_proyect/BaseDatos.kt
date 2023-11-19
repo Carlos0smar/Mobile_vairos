@@ -31,10 +31,10 @@ class BaseDatos (context: Context): SQLiteOpenHelper(context,BaseDatos.NOMBRE_BA
     fun addLugar(lugares: Lugares):Boolean{
         val db = this.writableDatabase
         val values = ContentValues()
-        values.put(NOMBRE,lugares.nombre)
-        values.put(DESCRIPCION,lugares.descripcion)
-        values.put(LATITUD,lugares.latitud)
-        values.put(LONGITUD,lugares.longitud)
+//        values.put(NOMBRE,lugares.nombre)
+//        values.put(DESCRIPCION,lugares.descripcion)
+//        values.put(LATITUD,lugares.latitud)
+//        values.put(LONGITUD,lugares.longitud)
         val _success = db.insert(NOMBRE_TABLA,null,values)
         db.close()
         return (Integer.parseInt("$_success") != -1)
@@ -50,10 +50,10 @@ class BaseDatos (context: Context): SQLiteOpenHelper(context,BaseDatos.NOMBRE_BA
             cursor.moveToFirst()
             while(cursor.moveToNext()){
                 lugares.id = Integer.parseInt(cursor.getString(cursor.getColumnIndex(ID)))
-                lugares.nombre = cursor.getString(cursor.getColumnIndex(NOMBRE))
-                lugares.descripcion = cursor.getString(cursor.getColumnIndex(DESCRIPCION))
-                lugares.latitud =  cursor.getString(cursor.getColumnIndex(LATITUD)).toFloat()
-                lugares.longitud = cursor.getString(cursor.getColumnIndex(LONGITUD)).toFloat()
+//                lugares.nombre = cursor.getString(cursor.getColumnIndex(NOMBRE))
+//                lugares.descripcion = cursor.getString(cursor.getColumnIndex(DESCRIPCION))
+//                lugares.latitud =  cursor.getString(cursor.getColumnIndex(LATITUD)).toFloat()
+//                lugares.longitud = cursor.getString(cursor.getColumnIndex(LONGITUD)).toFloat()
             }
         }
         cursor.close()
@@ -71,10 +71,10 @@ class BaseDatos (context: Context): SQLiteOpenHelper(context,BaseDatos.NOMBRE_BA
             while(cursor.moveToNext()){
                 val lugares = Lugares()
                 lugares.id = Integer.parseInt(cursor.getString(cursor.getColumnIndex(ID)))
-                lugares.nombre = cursor.getString(cursor.getColumnIndex(NOMBRE))
-                lugares.descripcion = cursor.getString(cursor.getColumnIndex(DESCRIPCION))
-                lugares.latitud = cursor.getString(cursor.getColumnIndex(LATITUD)).toFloat()
-                lugares.longitud = cursor.getString(cursor.getColumnIndex(LONGITUD)).toFloat()
+//                lugares.nombre = cursor.getString(cursor.getColumnIndex(NOMBRE))
+//                lugares.descripcion = cursor.getString(cursor.getColumnIndex(DESCRIPCION))
+//                lugares.latitud = cursor.getString(cursor.getColumnIndex(LATITUD)).toFloat()
+//                lugares.longitud = cursor.getString(cursor.getColumnIndex(LONGITUD)).toFloat()
                 lugaresList.add(lugares)
             }
         }
@@ -85,10 +85,10 @@ class BaseDatos (context: Context): SQLiteOpenHelper(context,BaseDatos.NOMBRE_BA
     fun updateLugar(lugares: Lugares): Boolean{
         val db = this.writableDatabase
         val values = ContentValues()
-        values.put(NOMBRE,lugares.nombre)
-        values.put(DESCRIPCION,lugares.descripcion)
-        values.put(LATITUD,lugares.latitud)
-        values.put(LONGITUD,lugares.longitud)
+//        values.put(NOMBRE,lugares.nombre)
+//        values.put(DESCRIPCION,lugares.descripcion)
+//        values.put(LATITUD,lugares.latitud)
+//        values.put(LONGITUD,lugares.longitud)
         val _success = db.update(NOMBRE_TABLA,values,ID+"=?",arrayOf(lugares.id.toString())).toLong()
         db.close()
         return Integer.parseInt("$_success") != -1

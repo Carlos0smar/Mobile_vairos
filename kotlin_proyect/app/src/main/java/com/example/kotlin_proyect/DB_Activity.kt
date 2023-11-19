@@ -42,11 +42,11 @@ class DB_Activity : AppCompatActivity() {
             var latitud = latitud_.text.toString()
             var longitud = longitud_.text.toString()
             success = false
-            lugares.nombre = nombre
-            lugares.descripcion = descripcion
-            lugares.latitud = latitud.toFloat()
-            lugares.longitud = longitud.toFloat()
-            success = dbHandler?.addLugar(lugares) as Boolean
+//            lugares.nombre = nombre
+//            lugares.descripcion = descripcion
+//            lugares.latitud = latitud.toFloat()
+//            lugares.longitud = longitud.toFloat()
+//            success = dbHandler?.addLugar(lugares) as Boolean
             Log.d("Datos","--->" + success.toString())
         }
 
@@ -81,7 +81,7 @@ class DB_Activity : AppCompatActivity() {
             var id_ = Integer.parseInt(id)
             val success = dbHandler?.getLugar(id_)
             if (success != null) {
-                Toast.makeText(this@DB_Activity, "Nombre: ${success.nombre}\nDescripción: ${success.descripcion}\nLatitud: ${success.latitud}\nLongitud: ${success.longitud}", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this@DB_Activity, "Nombre: ${success.nombre}\nDescripción: ${success.descripcion}\nLatitud: ${success.latitud}\nLongitud: ${success.longitud}", Toast.LENGTH_SHORT).show()
                 Log.d("Datos","--->" + success.toString())
             }
 

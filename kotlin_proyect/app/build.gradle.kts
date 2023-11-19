@@ -30,7 +30,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    packagingOptions.resources.excludes.add("/META-INF/{ASL2.0,LICENSE,license.txt,NOTICE,notice.txt}")
+
 }
+
 
 dependencies {
 
@@ -41,7 +44,18 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0") // Reemplaza con la versión más reciente de Retrofit
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0") // Reemplaza con la versión más reciente de la conversión Gson
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // retrofit
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    // GSON
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    //RXJava2
+    implementation ("io.reactivex.rxjava2:rxjava:2.2.21")
+    implementation ("io.reactivex.rxjava2:rxandroid:2.1.1")
+    implementation ("com.squareup.retrofit2:adapter-rxjava2:2.9.0")
+    implementation ("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11")
 
 }
