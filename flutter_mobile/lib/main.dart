@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-//import 'package:flutter_application_1/modules/operaciones/PruebaPage.dart';
+import 'package:flutter_mobile/screens/Aprender.dart';
+import 'package:flutter_mobile/screens/Lugares.dart';
+import 'package:flutter_mobile/screens/Avisos.dart';
+import 'package:flutter_mobile/screens/Evaluacion.dart';
 
 void main() {
   runApp(const MainApp());
@@ -10,10 +13,19 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Por un mundo Saludable',
       debugShowCheckedModeBanner: false,
-      home: BeginPage(),
+      initialRoute: '/',
+      
+      routes: {
+        '/': (context) => const BeginPage(),
+        '/Aprender': (context) => const Aprender(),
+        '/Lugares': (context) => const Lugares(),
+        '/Avisos': (context) => const Avisos(),
+        '/Evaluacion': (context) => const Evaluacion(),
+      },
+      // home: BeginPage(),
     );
   }
 }
@@ -50,7 +62,7 @@ class BeginPageState extends State<BeginPage> {
                       splashColor:
                           Colors.blue, // color diferente para el splash
                       onTap: () {
-                        //const PruebaPage();
+                        Navigator.pushNamed(context, '/Lugares');
                       }),
                   _createButtonItem(
                       imagen: 'assets/images/aprender.jpg',
@@ -58,7 +70,7 @@ class BeginPageState extends State<BeginPage> {
                       splashColor:
                           Colors.green, // color diferente para el splash
                       onTap: () {
-                        //const PrimeraPage();
+                        Navigator.pushNamed(context, '/Aprender');
                       }),
                 ],
               ),
@@ -71,7 +83,7 @@ class BeginPageState extends State<BeginPage> {
                       text: 'Evaluacion',
                       splashColor: Colors.red, // color diferente para el splash
                       onTap: () {
-                        //const PrimeraPage();
+                        Navigator.pushNamed(context, '/Evaluacion');
                       }),
                   _createButtonItem(
                       imagen: 'assets/images/avisos.jpg',
@@ -79,7 +91,7 @@ class BeginPageState extends State<BeginPage> {
                       splashColor:
                           Colors.yellow, // color diferente para el splash
                       onTap: () {
-                        //const PrimeraPage();
+                        Navigator.pushNamed(context, '/Avisos');
                       }),
                 ],
               ),
