@@ -18,7 +18,7 @@ class _Aprender extends State<Aprender> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Hello, World!',
+              'Aprender',
               style: TextStyle(fontSize: 24),
             ),
           ],

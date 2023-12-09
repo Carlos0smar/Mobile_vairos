@@ -39,10 +39,15 @@ class MainActivity : AppCompatActivity() {
         val Button_practica = findViewById<Button>(R.id.buttonPractica_course)
         val Segundo_Parcial = findViewById<Button>(R.id.buttonSegundo_parcial)
         val ButtonWSA_2_GET = findViewById<Button>(R.id.buttonWSA_2_GET)
+        val Button_ExamenFinal = findViewById<Button>(R.id.button_Final)
 
 
 
 
+        Button_ExamenFinal.setOnClickListener(){
+            val intent = Intent(this@MainActivity, Examen_final::class.java)
+            startActivity(intent)
+        }
 
         Button_practica.setOnClickListener(){
             val intent = Intent(this@MainActivity, practica_1_course::class.java)

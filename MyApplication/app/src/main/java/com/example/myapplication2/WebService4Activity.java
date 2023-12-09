@@ -143,8 +143,103 @@ public class WebService4Activity extends AppCompatActivity {
         });
     }
 
+//    public void getAllData(){
+//        String URL_WS = "http://192.168.189.117/movil/";
+//        long startTime = System.currentTimeMillis();
+//        final Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(URL_WS)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//        WebServiceAPI webServiceApi = retrofit.create(WebServiceAPI.class);
+//
+//        final Call<List<WSCompras>> call = webServiceApi.getCompras();
+//        final Call<List<WSPersons>> call2 = webServiceApi.getPersons();
+//        final Call<List<WSVentas>> call3 = webServiceApi.getVentas();
+//        final Call<List<WSReserva>> call4 = webServiceApi.getReserva();
+//        call.enqueue(new Callback<List<WSCompras>>() {
+//            @Override
+//            public void onResponse(Call<List<WSCompras>> call, Response<List<WSCompras>> response) {
+//                if(response.isSuccessful()){
+//                    listDataCompras = response.body();
+//                    Toast.makeText(OmegaActivity.this, listDataCompras.get(0).getDescripcion(), Toast.LENGTH_SHORT).show();
+//                }else{
+//                    Toast.makeText(OmegaActivity.this, "REVISE SU SERVICIO DE INTERNET", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//            @Override
+//            public void onFailure(Call<List<WSCompras>> call, Throwable t) {
+//                Log.e("RetrofitError", t.getMessage());
+//                Toast.makeText(OmegaActivity.this, "REVISE EL SERVICIO WEB DE INTERNET compras", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//        call2.enqueue(new Callback<List<WSPersons>>() {
+//            @Override
+//            public void onResponse(Call<List<WSPersons>> call2, Response<List<WSPersons>> response) {
+//                if(response.isSuccessful()){
+//                    listDataPersons = response.body();
+//                    Toast.makeText(OmegaActivity.this, listDataPersons.get(0).getPaterno(), Toast.LENGTH_SHORT).show();
+//                }else{
+//                    Toast.makeText(OmegaActivity.this, "REVISE SU SERVICIO DE INTERNET ", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//            @Override
+//            public void onFailure(Call<List<WSPersons>> call, Throwable t) {
+//                Log.e("RetrofitError", t.getMessage());
+//                Toast.makeText(OmegaActivity.this, "REVISE EL SERVICIO WEB DE INTERNET persons", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//        call3.enqueue(new Callback<List<WSVentas>>() {
+//            @Override
+//            public void onResponse(Call<List<WSVentas>> call, Response<List<WSVentas>> response) {
+//                if(response.isSuccessful()){
+//                    listDataVentas = response.body();
+//                    Toast.makeText(OmegaActivity.this, listDataVentas.get(0).getDescripcion(), Toast.LENGTH_SHORT).show();
+//                }else{
+//                    Toast.makeText(OmegaActivity.this, "REVISE SU SERVICIO DE INTERNET", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//            @Override
+//            public void onFailure(Call<List<WSVentas>> call, Throwable t) {
+//                Log.e("RetrofitError", t.getMessage());
+//                Toast.makeText(OmegaActivity.this, "REVISE EL SERVICIO WEB DE INTERNET ventas", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//        call4.enqueue(new Callback<List<WSReserva>>() {
+//            @Override
+//            public void onResponse(Call<List<WSReserva>> call, Response<List<WSReserva>> response) {
+//                if(response.isSuccessful()){
+//                    listDataReserva = response.body();
+//                    // Obtén el tiempo actual después de recibir la respuesta
+//                    long endTime = System.currentTimeMillis();
+//                    long elapsedTime = endTime - startTime;
+//
+//                    // Convierte el tiempo a segundos
+//                    double seconds = elapsedTime / 1000.0;
+//
+//                    // Muestra el tiempo en un Toast
+//
+//
+//                    Toast.makeText(OmegaActivity.this, listDataReserva.get(0).getItem(), Toast.LENGTH_SHORT).show();
+//
+//                    String message = "Tiempo de ejecución: " + seconds + " segundos";
+//                    Toast.makeText(OmegaActivity.this, message, Toast.LENGTH_SHORT).show();
+//                }else{
+//                    Toast.makeText(OmegaActivity.this, "REVISE SU SERVICIO DE INTERNET", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//            @Override
+//            public void onFailure(Call<List<WSReserva>> call, Throwable t) {
+//                Log.e("RetrofitError", t.getMessage());
+//                Toast.makeText(OmegaActivity.this, "REVISE EL SERVICIO WEB DE INTERNET reserva", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+
     private void recoveryData() {
-        String URL_WS = "http://192.168.1.15:80/mobile/";
+        String URL_WS = "http://192.168.173.115/mobile/";
         Gson gson = new GsonBuilder().setLenient().create();
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();

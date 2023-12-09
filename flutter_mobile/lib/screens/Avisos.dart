@@ -18,7 +18,7 @@ class _Avisos extends State<Avisos> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Hello, World!',
+              'Avisos',
               style: TextStyle(fontSize: 24),
             ),
           ],

@@ -20,6 +20,9 @@
         android:theme="@style/Theme.Kotlin_proyect"
         tools:targetApi="31">
         <activity
+            android:name=".Examen_final"
+            android:exported="false" />
+        <activity
             android:name=".Restas_Sucesivas_Activity"
             android:exported="false" />
         <activity

@@ -7,7 +7,7 @@ import android.view.View
 
 class cubo(context: Context) : View(context) {
     private val paint = Paint()
-    var cubeSize = 100000
+    var cubeSize = 100
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
@@ -25,7 +25,7 @@ class cubo(context: Context) : View(context) {
         val bottom = top + sideLength
         val depth = sideLength / 2
 
-        paint.color = Color.BLUE
+        paint.color = Color.YELLOW
         paint.style = Paint.Style.STROKE
         paint.strokeWidth = 5f
 

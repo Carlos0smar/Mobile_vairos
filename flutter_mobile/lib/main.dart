@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
 import 'package:flutter_mobile/screens/Aprender.dart';
 import 'package:flutter_mobile/screens/Lugares.dart';
 import 'package:flutter_mobile/screens/Avisos.dart';
-import 'package:flutter_mobile/screens/Evaluacion.dart';
+// import 'package:flutter_mobile/screens/Evaluacion.dart';
+import 'package:flutter_mobile/screens/recovery_page.dart';
+// import 'package:flutter_mobile/screens/data_model.dart';
 
 void main() {
   runApp(const MainApp());
+  HttpOverrides.global = MyHttpOverrides();
+}
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
 }
 
 class MainApp extends StatelessWidget {
@@ -23,7 +36,8 @@ class MainApp extends StatelessWidget {
         '/Aprender': (context) => const Aprender(),
         '/Lugares': (context) => const Lugares(),
         '/Avisos': (context) => const Avisos(),
-        '/Evaluacion': (context) => const Evaluacion(),
+        '/Evaluacion': (context) => RecoveryPage(),
+        // '/Evaluacion': (context) => const Evaluacion(),
       },
       // home: BeginPage(),
     );

@@ -18,7 +18,7 @@ class _Lugares extends State<Lugares> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Hello, World!',
+              'Lugares',
               style: TextStyle(fontSize: 24),
             ),
           ],

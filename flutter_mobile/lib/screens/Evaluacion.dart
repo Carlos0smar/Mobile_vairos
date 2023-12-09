@@ -18,7 +18,7 @@ class _Evaluacion extends State<Evaluacion> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Hello, World!',
+              'Evaluacion',
               style: TextStyle(fontSize: 24),
             ),
           ],

@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     Button ButtonOperaciones, ButtonSalir, ButtonSegundoGrado, ButtonImaginarios, ButtonCalculadora,
             ButtonGraficos2D, ButtonGraficos2DTarea, ButtonEscalado, ButtonEnviar, ButtonBD, ButtonBDTarea,
             ButtonWebService, ButtonWebServicePersons, ButtonWebServiceCompras,
-            ButtonWebServicePersonsPost, PrimerParcial, FormWS, ButtonWebService4, ButtonArqui;
+            ButtonWebServicePersonsPost, PrimerParcial, FormWS, ButtonWebService4, ButtonArqui, Examen_Final;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         ButtonWebService4 = findViewById(R.id.buttonWebService4);
         ButtonWebService4 = findViewById(R.id.buttonWebService4);
         ButtonArqui = findViewById(R.id.Arqui_Software);
+        Examen_Final = findViewById(R.id.buttonFinal);
 
 
         PrimerParcial = findViewById(R.id.PrimerParcial);
@@ -103,6 +104,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, OperacionesActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Examen_Final.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Examen_Final.class);
                 startActivity(intent);
             }
         });
@@ -184,12 +193,12 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-//        ButtonGraficos2D.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                setContentView(new Graficos2D(MainActivity.this));
-//            }
-//        });
+        ButtonGraficos2D.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(new Graficos2D(MainActivity.this));
+            }
+        });
 
         ButtonGraficos2DTarea.setOnClickListener(new View.OnClickListener() {
             @Override
